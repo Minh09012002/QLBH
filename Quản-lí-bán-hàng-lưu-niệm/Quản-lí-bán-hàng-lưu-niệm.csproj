@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C012FC2D-8A57-4D42-9C7D-9C04571CD9E0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Quản_lí_bán_hàng_lưu_niệm</RootNamespace>
+    <AssemblyName>Quản-lí-bán-hàng-lưu-niệm</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dataservices.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCodeMaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCodeMaterial.Designer.cs">
+      <DependentUpon>FrmCodeMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCustomers.Designer.cs">
+      <DependentUpon>frmCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGoods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGoods.Designer.cs">
+      <DependentUpon>frmGoods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmlogin1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmlogin1.Designer.cs">
+      <DependentUpon>frmlogin1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmmain1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmmain1.Designer.cs">
+      <DependentUpon>frmmain1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOrders.Designer.cs">
+      <DependentUpon>frmOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSearchCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSearchCustomers.Designer.cs">
+      <DependentUpon>frmSearchCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSearchGoods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSearchGoods.Designer.cs">
+      <DependentUpon>frmSearchGoods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSearchOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSearchOrders.Designer.cs">
+      <DependentUpon>frmSearchOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmsignin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmsignin.Designer.cs">
+      <DependentUpon>frmsignin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsers.Designer.cs">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QLBHEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBHEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLBHEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBHEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLBHEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBHEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>QLBHEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCodeMaterial.cs">
+      <DependentUpon>QLBHEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCustomer.cs">
+      <DependentUpon>QLBHEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblGood.cs">
+      <DependentUpon>QLBHEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblOrder.cs">
+      <DependentUpon>QLBHEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblOrdersDetail.cs">
+      <DependentUpon>QLBHEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUser.cs">
+      <DependentUpon>QLBHEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="turnover.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="turnover.Designer.cs">
+      <DependentUpon>turnover.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FrmCodeMaterial.resx">
+      <DependentUpon>FrmCodeMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomers.resx">
+      <DependentUpon>frmCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGoods.resx">
+      <DependentUpon>frmGoods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmlogin1.resx">
+      <DependentUpon>frmlogin1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmmain1.resx">
+      <DependentUpon>frmmain1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOrders.resx">
+      <DependentUpon>frmOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSearchCustomers.resx">
+      <DependentUpon>frmSearchCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSearchGoods.resx">
+      <DependentUpon>frmSearchGoods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSearchOrders.resx">
+      <DependentUpon>frmSearchOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmsignin.resx">
+      <DependentUpon>frmsignin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsers.resx">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="turnover.resx">
+      <DependentUpon>turnover.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EntityDeploy Include="QLBHEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QLBHEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="QLBHEntities.edmx.diagram">
+      <DependentUpon>QLBHEntities.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="QLBHEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLBHEntities.edmx</DependentUpon>
+      <LastGenOutput>QLBHEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="QLBHEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLBHEntities.edmx</DependentUpon>
+      <LastGenOutput>QLBHEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DAQLBHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblCodeMaterials">
+    <Key>
+      <PropertyRef Name="CodeMaterialID" />
+    </Key>
+    <Property Name="CodeMaterialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodeMaterialName" Type="nvarchar" MaxLength="30" />
+    <Property Name="sources" Type="nvarchar" MaxLength="30" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tblCustomers">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Address" Type="nvarchar" MaxLength="30" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="10" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tblGoods">
+    <Key>
+      <PropertyRef Name="GoodID" />
+    </Key>
+    <Property Name="GoodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GoodName" Type="nvarchar" MaxLength="30" />
+    <Property Name="CodeMaterialID" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="priceImport" Type="nvarchar" MaxLength="30" />
+    <Property Name="priceSell" Type="nvarchar" MaxLength="30" />
+    <Property Name="Photos" Type="image" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tblOrders">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="date" Type="nvarchar" MaxLength="1" />
+    <Property Name="GoodID" Type="int" Nullable="false" />
+    <Property Name="money" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tblOrdersDetails">
+    <Key>
+      <PropertyRef Name="OrderID" />
+      <PropertyRef Name="customerID" />
+    </Key>
+    <Property Name="OrderID" Type="int" Nullable="false" />
+    <Property Name="customerID" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="nvarchar" MaxLength="1" />
+    <Property Name="Price" Type="nvarchar" MaxLength="30" />
+    <Property Name="Discount" Type="nvarchar" MaxLength="30" />
+    <Property Name="money" Type="nvarchar" MaxLength="30" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tblUsers">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="20" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="20" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="5" />
+    <Property Name="Address" Type="nvarchar" MaxLength="30" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="10" />
+    <Property Name="Date" Type="nvarchar" MaxLength="20" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FK__tblGoods__CodeMa__531856C7">
+    <End Role="tblCodeMaterials" Type="Self.tblCodeMaterials" Multiplicity="1" />
+    <End Role="tblGoods" Type="Self.tblGoods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCodeMaterials">
+        <PropertyRef Name="CodeMaterialID" />
+      </Principal>
+      <Dependent Role="tblGoods">
+        <PropertyRef Name="CodeMaterialID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrders__custo__59904A2C">
+    <End Role="tblCustomers" Type="Self.tblCustomers" Multiplicity="1" />
+    <End Role="tblOrdersDetails" Type="Self.tblOrdersDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCustomers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="tblOrdersDetails">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrders__GoodI__55BFB948">
+    <End Role="tblGoods" Type="Self.tblGoods" Multiplicity="1" />
+    <End Role="tblOrders" Type="Self.tblOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblGoods">
+        <PropertyRef Name="GoodID" />
+      </Principal>
+      <Dependent Role="tblOrders">
+        <PropertyRef Name="GoodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrders__Order__589C25F3">
+    <End Role="tblOrders" Type="Self.tblOrders" Multiplicity="1" />
+    <End Role="tblOrdersDetails" Type="Self.tblOrdersDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOrders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="tblOrdersDetails">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrders__UserI__54CB950F">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+    <End Role="tblOrders" Type="Self.tblOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblOrders">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DAQLBHModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCodeMaterials" EntityType="Self.tblCodeMaterials" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCustomers" EntityType="Self.tblCustomers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGoods" EntityType="Self.tblGoods" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblOrders" EntityType="Self.tblOrders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblOrdersDetails" EntityType="Self.tblOrdersDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblGoods__CodeMa__531856C7" Association="Self.FK__tblGoods__CodeMa__531856C7">
+      <End Role="tblCodeMaterials" EntitySet="tblCodeMaterials" />
+      <End Role="tblGoods" EntitySet="tblGoods" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrders__custo__59904A2C" Association="Self.FK__tblOrders__custo__59904A2C">
+      <End Role="tblCustomers" EntitySet="tblCustomers" />
+      <End Role="tblOrdersDetails" EntitySet="tblOrdersDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrders__GoodI__55BFB948" Association="Self.FK__tblOrders__GoodI__55BFB948">
+      <End Role="tblGoods" EntitySet="tblGoods" />
+      <End Role="tblOrders" EntitySet="tblOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrders__Order__589C25F3" Association="Self.FK__tblOrders__Order__589C25F3">
+      <End Role="tblOrders" EntitySet="tblOrders" />
+      <End Role="tblOrdersDetails" EntitySet="tblOrdersDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrders__UserI__54CB950F" Association="Self.FK__tblOrders__UserI__54CB950F">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblOrders" EntitySet="tblOrders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

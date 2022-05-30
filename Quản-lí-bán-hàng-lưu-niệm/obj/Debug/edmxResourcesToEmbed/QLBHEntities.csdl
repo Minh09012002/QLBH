@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DAQLBHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblCodeMaterial">
+    <Key>
+      <PropertyRef Name="CodeMaterialID" />
+    </Key>
+    <Property Name="CodeMaterialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodeMaterialName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="sources" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblGoods" Relationship="Self.FK__tblGoods__CodeMa__531856C7" FromRole="tblCodeMaterials" ToRole="tblGoods" />
+  </EntityType>
+  <EntityType Name="tblCustomer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblOrdersDetails" Relationship="Self.FK__tblOrders__custo__59904A2C" FromRole="tblCustomers" ToRole="tblOrdersDetails" />
+  </EntityType>
+  <EntityType Name="tblGood">
+    <Key>
+      <PropertyRef Name="GoodID" />
+    </Key>
+    <Property Name="GoodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GoodName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CodeMaterialID" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="priceImport" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="priceSell" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Photos" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblCodeMaterial" Relationship="Self.FK__tblGoods__CodeMa__531856C7" FromRole="tblGoods" ToRole="tblCodeMaterials" />
+    <NavigationProperty Name="tblOrders" Relationship="Self.FK__tblOrders__GoodI__55BFB948" FromRole="tblGoods" ToRole="tblOrders" />
+  </EntityType>
+  <EntityType Name="tblOrder">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="GoodID" Type="Int32" Nullable="false" />
+    <Property Name="money" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblGood" Relationship="Self.FK__tblOrders__GoodI__55BFB948" FromRole="tblOrders" ToRole="tblGoods" />
+    <NavigationProperty Name="tblOrdersDetails" Relationship="Self.FK__tblOrders__Order__589C25F3" FromRole="tblOrders" ToRole="tblOrdersDetails" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK__tblOrders__UserI__54CB950F" FromRole="tblOrders" ToRole="tblUsers" />
+  </EntityType>
+  <EntityType Name="tblOrdersDetail">
+    <Key>
+      <PropertyRef Name="OrderID" />
+      <PropertyRef Name="customerID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="customerID" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Discount" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="money" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblCustomer" Relationship="Self.FK__tblOrders__custo__59904A2C" FromRole="tblOrdersDetails" ToRole="tblCustomers" />
+    <NavigationProperty Name="tblOrder" Relationship="Self.FK__tblOrders__Order__589C25F3" FromRole="tblOrdersDetails" ToRole="tblOrders" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblOrders" Relationship="Self.FK__tblOrders__UserI__54CB950F" FromRole="tblUsers" ToRole="tblOrders" />
+  </EntityType>
+  <Association Name="FK__tblGoods__CodeMa__531856C7">
+    <End Role="tblCodeMaterials" Type="Self.tblCodeMaterial" Multiplicity="1" />
+    <End Role="tblGoods" Type="Self.tblGood" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCodeMaterials">
+        <PropertyRef Name="CodeMaterialID" />
+      </Principal>
+      <Dependent Role="tblGoods">
+        <PropertyRef Name="CodeMaterialID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrders__custo__59904A2C">
+    <End Role="tblCustomers" Type="Self.tblCustomer" Multiplicity="1" />
+    <End Role="tblOrdersDetails" Type="Self.tblOrdersDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCustomers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="tblOrdersDetails">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrders__GoodI__55BFB948">
+    <End Role="tblGoods" Type="Self.tblGood" Multiplicity="1" />
+    <End Role="tblOrders" Type="Self.tblOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblGoods">
+        <PropertyRef Name="GoodID" />
+      </Principal>
+      <Dependent Role="tblOrders">
+        <PropertyRef Name="GoodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrders__Order__589C25F3">
+    <End Role="tblOrders" Type="Self.tblOrder" Multiplicity="1" />
+    <End Role="tblOrdersDetails" Type="Self.tblOrdersDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOrders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="tblOrdersDetails">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrders__UserI__54CB950F">
+    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblOrders" Type="Self.tblOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblOrders">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DAQLBHEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tblCodeMaterials" EntityType="Self.tblCodeMaterial" />
+    <EntitySet Name="tblCustomers" EntityType="Self.tblCustomer" />
+    <EntitySet Name="tblGoods" EntityType="Self.tblGood" />
+    <EntitySet Name="tblOrders" EntityType="Self.tblOrder" />
+    <EntitySet Name="tblOrdersDetails" EntityType="Self.tblOrdersDetail" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <AssociationSet Name="FK__tblGoods__CodeMa__531856C7" Association="Self.FK__tblGoods__CodeMa__531856C7">
+      <End Role="tblCodeMaterials" EntitySet="tblCodeMaterials" />
+      <End Role="tblGoods" EntitySet="tblGoods" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrders__custo__59904A2C" Association="Self.FK__tblOrders__custo__59904A2C">
+      <End Role="tblCustomers" EntitySet="tblCustomers" />
+      <End Role="tblOrdersDetails" EntitySet="tblOrdersDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrders__GoodI__55BFB948" Association="Self.FK__tblOrders__GoodI__55BFB948">
+      <End Role="tblGoods" EntitySet="tblGoods" />
+      <End Role="tblOrders" EntitySet="tblOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrders__Order__589C25F3" Association="Self.FK__tblOrders__Order__589C25F3">
+      <End Role="tblOrders" EntitySet="tblOrders" />
+      <End Role="tblOrdersDetails" EntitySet="tblOrdersDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrders__UserI__54CB950F" Association="Self.FK__tblOrders__UserI__54CB950F">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblOrders" EntitySet="tblOrders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
